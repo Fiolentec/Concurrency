@@ -20,7 +20,7 @@ public class SavingAccount {
 
     public void withdraw(int k) {
         synchronized (this) {
-            while (balance < k || numPreferred>0) {
+            while (balance < k || numPreferred > 0) {
                 sleep();
             }
             balance -= k;
@@ -29,14 +29,14 @@ public class SavingAccount {
         }
     }
 
-    public void withdrawPreferred (int k){
+    public void withdrawPreferred(int k) {
         synchronized (this) {
-            numPreferred ++;
+            numPreferred++;
             while (balance < k) {
                 sleep();
             }
             balance -= k;
-            numPreferred --;
+            numPreferred--;
             System.out.println("PREFERED!!! subtracted " + k + " from balance, and now the balance is " + balance);
             System.out.println();
         }

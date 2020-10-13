@@ -5,11 +5,11 @@ public class Main {
     public static void main(String[] args) {
         SimpleReadWriteLock simpleReadWriteLock = new SimpleReadWriteLock();
         for (int i = 0; i < 10; i++) {
-            if (i % 3 == 0){
+            if (i % 3 == 0) {
                 new Thread(() -> {
                     writeSmth(simpleReadWriteLock);
                 }).start();
-            }else {
+            } else {
                 new Thread(() -> {
                     readSmth(simpleReadWriteLock);
                 }).start();
@@ -21,7 +21,8 @@ public class Main {
             }
         }
     }
-    private static void writeSmth(SimpleReadWriteLock simpleReadWriteLock){
+
+    private static void writeSmth(SimpleReadWriteLock simpleReadWriteLock) {
         simpleReadWriteLock.writeLock().lock();
         try {
             Thread.sleep(10);
@@ -32,7 +33,7 @@ public class Main {
         simpleReadWriteLock.writeLock().unlock();
     }
 
-    private static void readSmth(SimpleReadWriteLock simpleReadWriteLock){
+    private static void readSmth(SimpleReadWriteLock simpleReadWriteLock) {
         simpleReadWriteLock.readLock().lock();
         try {
             Thread.sleep(1000);
